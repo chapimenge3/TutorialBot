@@ -35,7 +35,7 @@ def echo(u, c):
     u.message.reply_text("This is a message text")
     return 
 
-def get_random(update, context, local=False):
+def get_random(update, context):
     keyboard = [
         [
             InlineKeyboardButton("Cat", callback_data='cats'),
@@ -64,8 +64,8 @@ def send_cat_photo(update, context):
     cat = requests.get(url)
     # print(cat.text) 
     # cat = cat.json()[0]['url']
-    bot.send_photo(chat_id=update.effective_user.id, photo=url)
-    get_random(update, context, local=True)
+    bot.send_photo(chat_id=update.effective_user.id, photo=cat.content)
+    get_random(update, context)
 
 def send_dog_photo(update, context):
     query = update.callback_query
@@ -73,7 +73,7 @@ def send_dog_photo(update, context):
     url = 'https://dog.ceo/api/breeds/image/random'
     bot = context.bot
     bot.send_photo(chat_id=update.effective_user.id, photo=requests.get(url).json()['message'])
-    get_random(update, context, local=True)
+    get_random(update, context)
     
     
 def send_any_photo(update, context):
@@ -83,7 +83,7 @@ def send_any_photo(update, context):
     bot = context.bot
     pic = requests.get(url)
     bot.send_photo(chat_id=update.effective_user.id, photo=pic.content)
-    get_random(update, context, local=True)
+    get_random(update, context)
 
 def send_jokes(update, context):
     query = update.callback_query
@@ -95,7 +95,7 @@ def send_jokes(update, context):
     context.bot.send_message(chat_id=update.effective_user.id, 
                                  text="<code>"+ joke.json()['joke'] + "</code>", parse_mode=ParseMode.HTML)
         
-    get_random(update, context, local=True)
+    get_random(update, context, )
 
 def send_quote(update, context):
     query = update.callback_query
@@ -111,7 +111,7 @@ def send_quote(update, context):
         parse_mode=ParseMode.HTML
     )
     
-    get_random(update, context, local=True)
+    get_random(update, context, )
     
     
 def main():
