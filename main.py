@@ -18,18 +18,18 @@ def start(update, context):
     
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     
-    update.message.reply_text(f"Welcome {first_name}\n share your contact or location by clicking the button\n\nSend /random", reply_markup=reply_markup)
+    update.message.reply_text(f"😊 Welcome {first_name} \n share your contact or location by clicking the button\n\nSend /random", reply_markup=reply_markup)
     
 
 
 def get_contact(update, context):
     phone = update.message.contact.phone_number
-    update.message.reply_text(f"Your phone number is {phone}\n\nSend /help")
+    update.message.reply_text(f"Your phone number is {phone}\n\nSend /random")
 
 
 def get_location(update, context):
     location = update.message.location
-    update.message.reply_text(f"Your location is {location.latitude} {location.longitude}\n\nSend /help")
+    update.message.reply_text(f"Your location is {location.latitude} {location.longitude}\n\nSend /random")
     
 def echo(u, c):
     u.message.reply_text("This is a message text")
@@ -42,14 +42,11 @@ def get_random(update, context, local=False):
             InlineKeyboardButton("Dogs", callback_data='dogs'),
         ],
         [
-            InlineKeyboardButton("Human", callback_data='human'),
             InlineKeyboardButton("Any Picture", callback_data='any'),
-            
+            InlineKeyboardButton("Quote", callback_data='quote'),
         ],
         [
-            InlineKeyboardButton("Quote", callback_data='quote'),
-            InlineKeyboardButton("Jokes", callback_data='joke'),
-            
+            InlineKeyboardButton("Jokes", callback_data='joke'),  
         ],
         [
             
